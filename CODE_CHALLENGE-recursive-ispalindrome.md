@@ -4,9 +4,11 @@ depending on if the String is an exact palindrome.
 
 A palindrome is any word that's spelled the same backward and forwad.
 
+```java
 isPalindrome("racecar") // returns true
 isPalindrome("Racecar") // returns false because of capitalization
 isPalindrome("elephant") // returns false because it's not spelled the same in reverse
+```
 
 ## Stretch Goals
 * Modify the isPalindrome function so it ignores:
