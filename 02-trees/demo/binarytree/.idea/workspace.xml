@@ -12,21 +12,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="BinaryTree.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="BinaryTree.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/BinaryTree.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="84" column="0" lean-forward="false" selection-start-line="84" selection-start-column="0" selection-end-line="84" selection-end-column="0" />
+            <state relative-caret-position="237">
+              <caret line="111" column="8" lean-forward="false" selection-start-line="111" selection-start-column="8" selection-end-line="111" selection-end-column="8" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BinaryTreeTest.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="BinaryTreeTest.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/test/BinaryTreeTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="290">
-              <caret line="73" column="0" lean-forward="false" selection-start-line="73" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
+            <state relative-caret-position="370">
+              <caret line="84" column="0" lean-forward="false" selection-start-line="84" selection-start-column="0" selection-end-line="84" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -52,8 +52,8 @@
       <list>
         <option value="$PROJECT_DIR$/src/TreeNode.java" />
         <option value="$APPLICATION_HOME_DIR$/lib/junit-4.12.jar!/org/junit/internal/runners/model/ReflectiveCallable.class" />
-        <option value="$PROJECT_DIR$/test/BinaryTreeTest.java" />
         <option value="$PROJECT_DIR$/src/BinaryTree.java" />
+        <option value="$PROJECT_DIR$/test/BinaryTreeTest.java" />
       </list>
     </option>
   </component>
@@ -251,9 +251,6 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="BinaryTreeTest - 2018.02.22 at 14h 45m 38s.xml">
-      <configuration name="BinaryTreeTest" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="BinaryTreeTest - 2018.02.22 at 14h 46m 50s.xml">
       <configuration name="BinaryTreeTest" configurationId="JUnit" />
     </history-entry>
@@ -276,6 +273,9 @@
       <configuration name="BinaryTreeTest" configurationId="JUnit" />
     </history-entry>
     <history-entry file="BinaryTreeTest - 2018.02.22 at 14h 55m 58s.xml">
+      <configuration name="BinaryTreeTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="BinaryTreeTest - 2018.02.22 at 15h 02m 32s.xml">
       <configuration name="BinaryTreeTest" configurationId="JUnit" />
     </history-entry>
     <history-entry file="BinaryTreeTest_breadthFirst - 2018.02.22 at 14h 55m 32s.xml">
@@ -320,13 +320,6 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/test/BinaryTreeTest.java</url>
-          <line>82</line>
-          <properties />
-        </line-breakpoint>
-      </breakpoints>
       <option name="time" value="4" />
     </breakpoint-manager>
     <watches-manager />
@@ -364,17 +357,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/BinaryTreeTest.java">
+    <entry file="file://$PROJECT_DIR$/src/BinaryTree.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="290">
-          <caret line="73" column="0" lean-forward="false" selection-start-line="73" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
+        <state relative-caret-position="237">
+          <caret line="111" column="8" lean-forward="false" selection-start-line="111" selection-start-column="8" selection-end-line="111" selection-end-column="8" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/BinaryTree.java">
+    <entry file="file://$PROJECT_DIR$/test/BinaryTreeTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
+        <state relative-caret-position="370">
           <caret line="84" column="0" lean-forward="false" selection-start-line="84" selection-start-column="0" selection-end-line="84" selection-end-column="0" />
           <folding />
         </state>

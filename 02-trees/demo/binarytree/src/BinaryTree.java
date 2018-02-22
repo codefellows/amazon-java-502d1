@@ -1,3 +1,5 @@
+import apple.laf.JRSUIUtils;
+
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -91,6 +93,23 @@ public class BinaryTree {
             }
         }
         return builder.toString().trim();
+    }
+
+    public boolean equals(BinaryTree other) {
+        return this.equals(this.root, other.root);
+    }
+
+    private boolean equals(TreeNode n1, TreeNode n2) {
+        if (n1 == null && n2 == null) {
+            return true;
+        } else if (n1 == null && n2 != null) {
+            return false;
+        } else if (n1 != null && n2 == null) {
+            return false;
+        } else if (n1.data != n2.data) {
+            return false;
+        }
+        return equals(n1.left, n2.left) && equals(n1.right, n2.right);
     }
 }
 

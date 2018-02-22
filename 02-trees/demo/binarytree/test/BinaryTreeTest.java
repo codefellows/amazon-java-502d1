@@ -77,10 +77,13 @@ public class BinaryTreeTest {
     }
 
     @org.junit.Test
-    public void dupes() throws Exception {
-        assertEquals(false, empty.containsDuplicates());
-        assertEquals(false, single.containsDuplicates());
-        assertEquals(false, many.containsDuplicates());
-        assertEquals(true, dupes.containsDuplicates());
+    public void equality() throws Exception {
+        assertEquals(false, empty.equals(single));
+        assertEquals(false, single.equals(many));
+        assertEquals(false, many.equals(dupes));
+
+        assertEquals(true, empty.equals(empty));
+        assertEquals(true, single.equals(single));
+        assertEquals(true, many.equals(many));
     }
 }
