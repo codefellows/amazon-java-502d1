@@ -70,3 +70,34 @@ A breadth-first traversal visits nodes in this order:
 ```
 
 This tree should display as `10 4 37 1 5`.
+
+# Height
+Write a method that calculates the height of a tree. The height of a tree is
+the maximum distance between the root and any leaf leaf node.
+
+The height of this tree is 3:
+
+```
+    10
+   /  \
+  4   37
+ / \
+1   5
+```
+
+The height of this tree is 4:
+
+```
+    10
+   /  \
+  4   37
+ / \
+1   5
+     \
+      9
+```
+
+
+# Number of Leaves
+Write a method that calculates the number of leaf nodes in a tree. A leaf node
+is any node that has no left or right children.
