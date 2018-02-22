@@ -1,3 +1,6 @@
+import java.util.HashSet;
+import java.util.Set;
+
 public class BinaryTree {
     public TreeNode root;
 
@@ -49,6 +52,21 @@ public class BinaryTree {
         int rightHeight = height(node.right);
 
         return 1 + Math.max(leftHeight, rightHeight);
+    }
+
+    public boolean containsDuplicates() {
+        Set<Integer> seen = new HashSet<>();
+        return this.containsDuplicates(this.root, seen);
+    }
+
+    private boolean containsDuplicates(TreeNode node, Set<Integer> seen) {
+        if (node == null) {
+            return false;
+        } else if (seen.contains(node.data)) {
+            return true;
+        }
+        seen.add(node.data);
+        return containsDuplicates(node.left, seen) || containsDuplicates(node.right, seen);
     }
 }
 

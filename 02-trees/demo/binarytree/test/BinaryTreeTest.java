@@ -1,9 +1,12 @@
+import apple.laf.JRSUIUtils;
+
 import static org.junit.Assert.*;
 
 public class BinaryTreeTest {
     BinaryTree empty = new BinaryTree();
     BinaryTree single = new BinaryTree();
     BinaryTree many = new BinaryTree();
+    BinaryTree dupes = new BinaryTree();
 
     @org.junit.Before
     public void setUp() throws Exception {
@@ -24,6 +27,17 @@ public class BinaryTreeTest {
         n7.right = n12;
 
         many.root = n4;
+
+        TreeNode d3 = new TreeNode(3);
+        TreeNode d12 = new TreeNode(12);
+        TreeNode d13 = new TreeNode(13);
+        TreeNode d14 = new TreeNode(14);
+        TreeNode dd3 = new TreeNode(3);
+        d3.left = d12;
+        d12.left = d13;
+        d13.left = d14;
+        d14.right = dd3;
+        dupes.root = d3;
     }
 
     @org.junit.Test
@@ -52,5 +66,13 @@ public class BinaryTreeTest {
         assertEquals("", empty.toString());
         assertEquals("1", single.toString());
         assertEquals("3 4 7 12 8 2", many.toString());
+    }
+
+    @org.junit.Test
+    public void dupes() throws Exception {
+        assertEquals(false, empty.containsDuplicates());
+        assertEquals(false, single.containsDuplicates());
+        assertEquals(false, many.containsDuplicates());
+        assertEquals(true, dupes.containsDuplicates());
     }
 }
