@@ -46,4 +46,11 @@ public class BinaryTreeTest {
         assertEquals(1, single.height());
         assertEquals(4, many.height());
     }
+
+    @org.junit.Test
+    public void string() throws Exception {
+        assertEquals("", empty.toString());
+        assertEquals("1", single.toString());
+        assertEquals("3 4 7 12 8 2", many.toString());
+    }
 }

@@ -22,6 +22,19 @@ public class BinaryTree {
         return 1 + this.size(node.left) + this.size(node.right);
     }
 
+    public String toString() {
+        return this.toString(this.root, new StringBuilder()).toString().trim();
+    }
+
+    private StringBuilder toString(TreeNode node, StringBuilder builder) {
+        if (node != null) {
+            this.toString(node.left, builder);
+            builder.append(node.data + " ");
+            this.toString(node.right, builder);
+        }
+        return builder;
+    }
+
     // height() return the maximum height of the tree
     public int height() {
         return this.height(this.root);
