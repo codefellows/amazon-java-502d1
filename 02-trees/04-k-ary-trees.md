@@ -35,3 +35,7 @@ KaryNode {
   List<String> children;
 }
 ```
+
+## Challenge
+Use Java's `Scanner` to read an HTML file and create a tree representing the
+HTML DOM.
