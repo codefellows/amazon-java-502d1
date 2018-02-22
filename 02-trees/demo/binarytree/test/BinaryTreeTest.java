@@ -69,6 +69,14 @@ public class BinaryTreeTest {
     }
 
     @org.junit.Test
+    public void breadthFirst() throws Exception {
+        assertEquals("", empty.breadthFirstTraversal());
+        assertEquals("1", single.breadthFirstTraversal());
+        assertEquals("4 3 8 7 2 12", many.breadthFirstTraversal());
+        assertEquals("3 12 13 14 3", dupes.breadthFirstTraversal());
+    }
+
+    @org.junit.Test
     public void dupes() throws Exception {
         assertEquals(false, empty.containsDuplicates());
         assertEquals(false, single.containsDuplicates());

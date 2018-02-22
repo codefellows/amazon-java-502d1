@@ -1,4 +1,6 @@
 import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Set;
 
 public class BinaryTree {
@@ -67,6 +69,28 @@ public class BinaryTree {
         }
         seen.add(node.data);
         return containsDuplicates(node.left, seen) || containsDuplicates(node.right, seen);
+    }
+
+    public String breadthFirstTraversal() {
+        if (this.isEmpty()) {
+            return "";
+        }
+
+        StringBuilder builder = new StringBuilder();
+        Queue<TreeNode> qq = new LinkedList<>();
+        qq.add(this.root);
+
+        while (!qq.isEmpty()) {
+            TreeNode node = qq.remove();
+            builder.append(node.data + " ");
+            if (node.left != null) {
+                qq.add(node.left);
+            }
+            if (node.right != null) {
+                qq.add(node.right);
+            }
+        }
+        return builder.toString().trim();
     }
 }
 
