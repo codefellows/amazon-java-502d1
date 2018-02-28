@@ -67,4 +67,4 @@ Words are created by walking up/down/left/right from one die and stringing
 letters together to make a word. This problem requires reading in a dictionary
 of words so you know if someone is a legitimate word or not.
 
-![example boggle board](boggle.jpg)
+![example boggle board](./images/boggle.jpg)
