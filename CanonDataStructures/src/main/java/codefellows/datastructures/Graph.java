@@ -4,24 +4,26 @@ import codefellows.datastructures.ArrayList;
 import codefellows.datastructures.List;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 public class Graph {
-    public List<String> nodes;
-    public Map<String, ArrayList<String>> edges;
+    public Set<String> nodes;
+    public Map<String, Set<String>> edges;
 
     public Graph() {
-        nodes = new ArrayList<>();
+        nodes = new HashSet<>();
         edges = new HashMap<>();
     }
 
     public void addNode(String node) {
         if (!nodes.contains(node)) {
-            nodes.append(node);
+            nodes.add(node);
         }
 
         if (!edges.containsKey(node)) {
-            edges.put(node, new ArrayList<>());
+            edges.put(node, new HashSet<>());
         }
     }
 
@@ -31,9 +33,9 @@ public class Graph {
         if (!edges.containsKey(nodeStart) || !edges.containsKey(nodeEnd)) {
             return;
         }
-        List<String> nodeEdges = this.edges.get(nodeStart);
+        Set<String> nodeEdges = this.edges.get(nodeStart);
         if (!nodeEdges.contains(nodeEnd)) {
-            nodeEdges.append(nodeEnd);
+            nodeEdges.add(nodeEnd);
         }
     }
 
@@ -43,20 +45,20 @@ public class Graph {
         if (!edges.containsKey(node1) || !edges.containsKey(node2)) {
             return;
         }
-        List<String> n1Edges = this.edges.get(node1);
-        List<String> n2Edges = this.edges.get(node2);
+        Set<String> n1Edges = this.edges.get(node1);
+        Set<String> n2Edges = this.edges.get(node2);
         if (!n1Edges.contains(node2)) {
-            n1Edges.append(node2);
+            n1Edges.add(node2);
         }
 
         if (!n2Edges.contains(node1)) {
-            n2Edges.append(node1);
+            n2Edges.add(node1);
         }
     }
 
-    public List<String> getEdges(String node) {
+    public Set<String> getEdges(String node) {
         if (!edges.containsKey(node)) {
-            return new ArrayList<>();
+            return new HashSet<>();
 
         }
         return edges.get(node);

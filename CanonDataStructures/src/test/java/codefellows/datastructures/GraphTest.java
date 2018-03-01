@@ -63,9 +63,8 @@ public class GraphTest {
 
         while (!qq.isEmpty()) {
             String city = qq.remove();
-            List<String> neighborCities = mGraph.getEdges(city);
-            for (int i = 0; i < neighborCities.size(); i++) {
-                String neighborCity = neighborCities.get(i);
+            Set<String> neighborCities = mGraph.getEdges(city);
+            for (String neighborCity : neighborCities) {
                 if (!visited.contains(neighborCity)) {
                     qq.add(neighborCity);
                 }
