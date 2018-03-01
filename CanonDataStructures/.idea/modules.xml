@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Canon401DataStructures.iml" filepath="$PROJECT_DIR$/.idea/modules/Canon401DataStructures.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Canon401DataStructures_main.iml" filepath="$PROJECT_DIR$/.idea/modules/Canon401DataStructures_main.iml" group="Canon401DataStructures" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Canon401DataStructures_test.iml" filepath="$PROJECT_DIR$/.idea/modules/Canon401DataStructures_test.iml" group="Canon401DataStructures" />
+    </modules>
+  </component>
+</project>
