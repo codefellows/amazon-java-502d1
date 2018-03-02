@@ -11,10 +11,12 @@ import java.util.Set;
 public class Graph {
     public Set<String> nodes;
     public Map<String, Set<String>> edges;
+    public Map<String, Map<String, Integer>> weights;
 
     public Graph() {
         nodes = new HashSet<>();
         edges = new HashMap<>();
+        weights = new HashMap<>();
     }
 
     public void addNode(String node) {
@@ -56,10 +58,17 @@ public class Graph {
         }
     }
 
+    public void addWeight(String startNode, String endNode, int weight) {
+        addEdge(startNode, endNode);
+        if (weights.get(startNode) == null) {
+            weights.put(startNode, new HashMap<>());
+        }
+        weights.get(startNode).put(endNode, weight);
+    }
+
     public Set<String> getEdges(String node) {
         if (!edges.containsKey(node)) {
             return new HashSet<>();
-
         }
         return edges.get(node);
     }
