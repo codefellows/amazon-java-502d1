@@ -1,4 +1,4 @@
-# ![CF](http://i.imgur.com/7v5ASc8.png) Implementing Dijkstra's Algorithm
+# ![CF](http://i.imgur.com/7v5ASc8.png) Implementing A Graph
 
 ## Resources
 * [Graph Implementations](https://secweb.cs.odu.edu/~zeil/cs361/web/website/Lectures/graphbasics/pages/ar01s02.html)
