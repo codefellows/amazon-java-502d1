@@ -1,11 +1,21 @@
 # ![CF](http://i.imgur.com/7v5ASc8.png) Implementing Dijkstra's Algorithm
 
 ## Resources
+* [Graph Implementations](https://secweb.cs.odu.edu/~zeil/cs361/web/website/Lectures/graphbasics/pages/ar01s02.html)
 * [Wikipedia: Dijkstra's Algorithm](https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm#Algorithm)
 
 ## Feature Tasks
 ### Implement a Graph
-Implement your own Graph. Assume there are no duplicate edges between nodes. It should have the following properties:
+Implement your own Graph. Only use the Graph in the CanonDataStructures
+directory as a reference. Try to build your implementation using your own
+knowledge and understanding of how Graphs are constructed. Don't just rewrite
+the reference Graph implementation verbatim.
+
+Refer to the "Graph Implementations" resource link above to see how to
+implement your Graph either as an adjacency matrix, or adjacency list.
+
+Assume there are no duplicate edges between nodes. It should have the following
+properties:
 
 * Write one class `GraphNode` to represent a node in the Graph.
   * add a public `String` property `name` so the node has a name.
