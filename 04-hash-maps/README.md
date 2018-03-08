@@ -1,5 +1,8 @@
 # ![CF](http://i.imgur.com/7v5ASc8.png) Hash Maps
 
+## Resources
+* [Wikipedia: Hash Table](https://en.wikipedia.org/wiki/Hash_table)
+
 Hash Maps (also called Hash Tables, or Dictionaries) are an extremely efficient
 data structure offering `O(1)` insert, update, and delete operations.
 
