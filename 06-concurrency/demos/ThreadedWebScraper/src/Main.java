@@ -93,9 +93,12 @@ public class Main {
   }
 
   public static int scrapeStatePopulation(String url) throws IOException {
-
-
     Document doc = Jsoup.connect(url).get();
+    List<Element> tables = doc.select("table.vcard");
+    if (tables.size() <= 0) {
+      System.out.println("URL: " + url);
+      return 0;
+    }
     Element infoPanel = doc.select("table.vcard").get(0);
 
     Elements rows = infoPanel.select("tr");
