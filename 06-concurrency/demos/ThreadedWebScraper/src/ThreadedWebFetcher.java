@@ -117,9 +117,6 @@ public class ThreadedWebFetcher implements Callable {
         Element nextRow = row.nextElementSibling();
         Element td = nextRow.selectFirst("td");
 
-        String[] urlPaths = url.split("/");
-        String stateName = urlPaths[urlPaths.length - 1];
-
         try {
           String popText = td.text().split(" ")[0].replace(",", "");
 
@@ -127,10 +124,8 @@ public class ThreadedWebFetcher implements Callable {
           popText = popText.replace("(2017)", "");
 
           int pop = Integer.parseInt(popText, 10);
-          System.out.println(stateName + ": " + pop);
           return pop;
         } catch (NumberFormatException e) {
-          System.out.println(stateName + ": error");
           return 0;
         }
       }
