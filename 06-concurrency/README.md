@@ -15,6 +15,31 @@
   * Best practices (localized variables, using atomic actions) to mitigate
     problems caused by race-conditions with concurrency.
 
+## Resources
+* [JSoup Homepage](https://jsoup.org/)
+
+The homepage includes this example code showing off how to download a webpage
+and interact with elements on the page.
+
+```java
+Document doc = Jsoup.connect("http://en.wikipedia.org/").get();
+log(doc.title());
+Elements newsHeadlines = doc.select("#mp-itn b a");
+for (Element headline : newsHeadlines) {
+  log("%s\n\t%s",
+    headline.attr("title"), headline.absUrl("href"));
+}
+```
+  
+### Configuration
+Add JSoup as a dependency in your `build.gradle` file.
+
+```
+dependencies {
+  compile 'org.jsoup:jsoup:1.11.1'
+}
+```
+
 ## Lecture Outline
 * Introduce JSoup web scraper
   * Configure `build.gradle` to have JSoup as a dependency
