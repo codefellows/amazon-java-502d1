@@ -69,6 +69,10 @@ public class ArrayList<E> implements List<E> {
         return this.data[index];
     }
 
+    public void set(int index, E value) {
+        this.data[index] = value;
+    }
+
     // Searches for the first occurrence of a value and removes it from
     // the list. Elements after the value will shift left to fill the gap
     // left by it.
@@ -148,5 +152,15 @@ public class ArrayList<E> implements List<E> {
 
         // Replace the old, full array with the new doubled array.
         this.data = doubled;
+    }
+
+    public String toString() {
+        StringBuilder result = new StringBuilder();
+        result.append("[");
+        for (int i = 0; i < this.size; i++) {
+            result.append(this.data[i] + " ");
+        }
+        result.append("]");
+        return result.toString();
     }
 }

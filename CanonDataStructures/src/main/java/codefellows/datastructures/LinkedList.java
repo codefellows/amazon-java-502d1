@@ -82,6 +82,19 @@ public class LinkedList<E> implements List<E> {
     }
 
     @Override
+    public void set(int index, E value) {
+        int count = 0;
+        ListNode<E> current = this.root;
+
+        while (count < index) {
+            current = current.next;
+            count++;
+        }
+
+        current.value = value;
+    }
+
+    @Override
     public boolean removeValue(E value) {
         int index = this.indexOf(value);
         if (index < 0) {
