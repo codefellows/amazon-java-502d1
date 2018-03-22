@@ -21,16 +21,6 @@
 The homepage includes this example code showing off how to download a webpage
 and interact with elements on the page.
 
-```java
-Document doc = Jsoup.connect("http://en.wikipedia.org/").get();
-log(doc.title());
-Elements newsHeadlines = doc.select("#mp-itn b a");
-for (Element headline : newsHeadlines) {
-  log("%s\n\t%s",
-    headline.attr("title"), headline.absUrl("href"));
-}
-```
-  
 ### Configuration
 Add JSoup as a dependency in your `build.gradle` file.
 
@@ -40,6 +30,20 @@ dependencies {
 }
 ```
 
+### Code
+```java
+public static void main(String[] args) throws IOException {
+    String url = "http://en.wikipedia.org/";
+
+    Document doc = Jsoup.connect(url).get();
+    System.out.println(doc.title());
+    Elements newsHeadlines = doc.select("#mp-itn b a");
+    for (Element headline : newsHeadlines) {
+        System.out.println("* " + headline.attr("title"));
+    }
+}
+```
+  
 ## Lecture Outline
 * Introduce JSoup web scraper
   * Configure `build.gradle` to have JSoup as a dependency
