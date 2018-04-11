@@ -18,6 +18,21 @@ public class SudokuBoardTest {
             {3, 4, 5, 2, 8, 6, 1, 7, 9}
     };
 
+    int[][] BOX_TESTER = {
+            {0, 0, 0, 0, 0, 0, 0, 0, 0},
+            {0, 0, 0, 0, 0, 0, 0, 0, 0},
+            {0, 0, 0, 0, 0, 0, 0, 0, 0},
+
+
+            {0, 0, 0, 0, 0, 0, 0, 0, 0},
+            {0, 0, 0, 0, 0, 0, 0, 0, 0},
+            {0, 0, 0, 0, 0, 0, 0, 0, 0},
+
+            {0, 0, 0, 0, 0, 0, 0, 0, 0},
+            {0, 0, 0, 0, 0, 0, 0, 0, 0},
+            {0, 0, 0, 0, 0, 0, 0, 0, 0}
+    };
+
     public SudokuBoard getSolvedBoard() {
         return Puzzles.initializeBoard(SOLUTION);
     }
@@ -92,14 +107,78 @@ public class SudokuBoardTest {
         String expected = "534 678 912 \n" +
                 "672 195 348 \n" +
                 "198 342 567 \n" +
-                "\n" +
                 "859 761 423 \n" +
                 "426 853 791 \n" +
                 "713 924 856 \n" +
-                "\n" +
                 "961 537 284 \n" +
                 "287 419 635 \n" +
-                "345 286 179 \n\n";
+                "345 286 179 \n";
         assertEquals(expected, ss);
+    }
+
+    @Test
+    public void testBoxContains() {
+        SudokuBoard board = Puzzles.initializeBoard(BOX_TESTER);
+
+        // left
+        int row = 0;
+        int col = 0;
+        board.set(row, col, 1);
+        assertEquals(false, board.setIfSafe(row + 1, col + 1, 1));
+        assertEquals(false, board.setIfSafe(row + 2, col + 2, 1));
+        board.unset(row, col);
+
+        row += 3;
+        board.set(row, col, 1);
+        assertEquals(false, board.setIfSafe(row + 1, col + 1, 1));
+        assertEquals(false, board.setIfSafe(row + 2, col + 2, 1));
+        board.unset(row, col);
+
+        row += 3;
+        board.set(row, col, 1);
+        assertEquals(false, board.setIfSafe(row + 1, col + 1, 1));
+        assertEquals(false, board.setIfSafe(row + 2, col + 2, 1));
+        board.unset(row, col);
+
+        // middle
+        row = 0;
+        col = 3;
+        board.set(row, col, 1);
+        assertEquals(false, board.setIfSafe(row + 1, col + 1, 1));
+        assertEquals(false, board.setIfSafe(row + 2, col + 2, 1));
+        board.unset(row, col);
+
+        row += 3;
+        board.set(row, col, 1);
+        assertEquals(false, board.setIfSafe(row + 1, col + 1, 1));
+        assertEquals(false, board.setIfSafe(row + 2, col + 2, 1));
+        board.unset(row, col);
+
+        row += 3;
+        board.set(row, col, 1);
+        assertEquals(false, board.setIfSafe(row + 1, col + 1, 1));
+        assertEquals(false, board.setIfSafe(row + 2, col + 2, 1));
+        board.unset(row, col);
+
+        // right
+        row = 0;
+        col = 6;
+        board.set(row, col, 1);
+        assertEquals(false, board.setIfSafe(row + 1, col + 1, 1));
+        assertEquals(false, board.setIfSafe(row + 2, col + 2, 1));
+        board.unset(row, col);
+
+        row += 3;
+        board.set(row, col, 1);
+        assertEquals(false, board.setIfSafe(row + 1, col + 1, 1));
+        assertEquals(false, board.setIfSafe(row + 2, col + 2, 1));
+        board.unset(row, col);
+
+        row += 3;
+        board.set(row, col, 1);
+        assertEquals(false, board.setIfSafe(row + 1, col + 1, 1));
+        assertEquals(false, board.setIfSafe(row + 2, col + 2, 1));
+        board.unset(row, col);
+
     }
 }

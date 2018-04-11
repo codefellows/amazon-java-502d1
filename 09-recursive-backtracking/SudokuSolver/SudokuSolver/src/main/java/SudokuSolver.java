@@ -52,7 +52,6 @@ public class SudokuSolver {
         for (int i = 1; i <= 9; i++) {
             boolean isSet = board.setIfSafe(coord.row, coord.col, i);
             if (isSet) {
-                System.out.println(coord.row + " " + coord.col + " " + i);
                 if (explore(board)) {
                     return true;
                 }
