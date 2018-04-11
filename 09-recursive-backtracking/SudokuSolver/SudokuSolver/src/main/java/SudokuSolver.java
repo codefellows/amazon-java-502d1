@@ -18,7 +18,6 @@ public class SudokuSolver {
         SudokuBoard board = Puzzles.initializeBoard(Puzzles.EXAMPLE2);
 
         explore(board);
-        System.out.println("Solved!");
         System.out.println(board);
     }
 
@@ -52,6 +51,8 @@ public class SudokuSolver {
         for (int i = 1; i <= 9; i++) {
             boolean isSet = board.setIfSafe(coord.row, coord.col, i);
             if (isSet) {
+                System.out.println(coord.row + " " + coord.col + " " + i);
+                System.out.println(board);
                 if (explore(board)) {
                     return true;
                 }

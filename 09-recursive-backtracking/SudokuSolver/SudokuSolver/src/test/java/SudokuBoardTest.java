@@ -104,15 +104,15 @@ public class SudokuBoardTest {
     public void testToString() {
         SudokuBoard board = getSolvedBoard();
         String ss = board.toString();
-        String expected = "534 678 912 \n" +
-                "672 195 348 \n" +
-                "198 342 567 \n" +
-                "859 761 423 \n" +
-                "426 853 791 \n" +
-                "713 924 856 \n" +
-                "961 537 284 \n" +
-                "287 419 635 \n" +
-                "345 286 179 \n";
+        String expected = "5 3 4 6 7 8 9 1 2 n\n" +
+                "6 7 2 1 9 5 3 4 8 n\n" +
+                "1 9 8 3 4 2 5 6 7 n\n" +
+                "8 5 9 7 6 1 4 2 3 n\n" +
+                "4 2 6 8 5 3 7 9 1 n\n" +
+                "7 1 3 9 2 4 8 5 6 n\n" +
+                "9 6 1 5 3 7 2 8 4 n\n" +
+                "2 8 7 4 1 9 6 3 5 n\n" +
+                "3 4 5 2 8 6 1 7 9 n\n";
         assertEquals(expected, ss);
     }
 

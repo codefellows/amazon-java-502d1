@@ -185,15 +185,9 @@ public class SudokuBoard {
         for (int row = 0; row < this.SIZE; row++) {
             for (int col = 0; col < this.SIZE; col++) {
                 int val = this.board[row][col];
-                builder.append(val);
-                if (col >= 2 && col % 3 == 2) {
-                    builder.append(" ");
-                }
+                builder.append(val + " ");
             }
-            builder.append('\n');
-            if (row >= 2 && row % 3 == 2) {
-                //builder.append("\n");
-            }
+            builder.append("n\n");
         }
 
         return builder.toString();
