@@ -78,8 +78,10 @@ public class SudokuBoard {
         col = minCol;
 
         while (row < maxRow) {
+            col = minCol;
             while(col < maxCol) {
-                if (this.board[row][col] == val) {
+                int cellVal = this.board[row][col];
+                if (cellVal == val) {
                     return true;
                 }
                 col++;

@@ -179,6 +179,15 @@ public class SudokuBoardTest {
         assertEquals(false, board.setIfSafe(row + 1, col + 1, 1));
         assertEquals(false, board.setIfSafe(row + 2, col + 2, 1));
         board.unset(row, col);
+    }
 
+    @Test
+    public void topRightBoxContains() {
+        SudokuBoard board = Puzzles.initializeBoard(BOX_TESTER);
+        boolean b1 = board.setIfSafe(1, 8, 3);
+        boolean b2 = board.setIfSafe(2, 7, 3);
+
+        assertEquals(true, b1);
+        assertEquals(false, b2);
     }
 }

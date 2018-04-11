@@ -83,6 +83,8 @@ def solve_sudoku(arr):
             # make tentative assignment
             arr[row][col]=num
             print row, col, num
+            print_grid(arr)
+            print
 
             # return, if sucess, ya!
             if(solve_sudoku(arr)):
