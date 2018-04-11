@@ -2,12 +2,18 @@ public class SolveEightQueens {
     public static void main(String[] args) {
         ChessBoard board = new ChessBoard();
         System.out.println(board);
-        explore(board);
+
+        boolean isSolved = explore(board);
+        if (isSolved) {
+            System.out.println("Solved");
+        } else {
+            System.out.println("Unsolved");
+        }
         System.out.println(board);
     }
 
     public static boolean explore(ChessBoard board) {
-        if (board.numQueens() == 8) {
+        if (board.numQueens() == ChessBoard.SIZE) {
             return true;
         }
 
