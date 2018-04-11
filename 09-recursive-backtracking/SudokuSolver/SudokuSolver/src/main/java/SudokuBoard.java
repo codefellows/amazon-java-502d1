@@ -35,6 +35,60 @@ public class SudokuBoard {
         this.set(row, col, 0);
     }
 
+    public boolean setIfSafe(int row, int col, int val) {
+        if (rowContains(row, val)) {
+            return false;
+        }
+        if (colContains(col, val)) {
+            return false;
+        }
+        if (boxContains(row, col, val)) {
+            return false;
+        }
+
+        this.board[row][col] = val;
+        return true;
+    }
+
+    private boolean rowContains(int row, int val) {
+        for (int col = 0; col < SIZE; col++) {
+            if (this.board[row][col] == val) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean colContains(int col, int val) {
+        for (int row = 0; row < SIZE; row++) {
+            if (this.board[row][col] == val) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean boxContains(int row, int col, int val) {
+        int minRow = (row / 3) * 3;
+        int minCol = (col / 3) * 3;
+        int maxRow = minRow + 3;
+        int maxCol = minCol + 3;
+
+        row = minRow;
+        col = minCol;
+
+        while (row < maxRow) {
+            while(col < maxCol) {
+                if (this.board[row][col] == val) {
+                    return true;
+                }
+                col++;
+            }
+            row++;
+        }
+        return false;
+    }
+
     public boolean isBoardComplete() {
         if (!isBoardValid()) {
            return false;
@@ -90,7 +144,9 @@ public class SudokuBoard {
                     }
                     seen.add(val);
                 }
+                col++;
             }
+            row++;
         }
         return true;
     }
@@ -121,5 +177,25 @@ public class SudokuBoard {
             }
         }
         return true;
+    }
+
+    public String toString(){
+        StringBuilder builder = new StringBuilder();
+
+        for (int row = 0; row < this.SIZE; row++) {
+            for (int col = 0; col < this.SIZE; col++) {
+                int val = this.board[row][col];
+                builder.append(val);
+                if (col >= 2 && col % 3 == 2) {
+                    builder.append(" ");
+                }
+            }
+            builder.append('\n');
+            if (row >= 2 && row % 3 == 2) {
+                //builder.append("\n");
+            }
+        }
+
+        return builder.toString();
     }
  }
