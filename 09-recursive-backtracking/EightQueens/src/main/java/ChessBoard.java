@@ -24,7 +24,7 @@ public class ChessBoard {
     }
 
     public void set(int row, int col) {
-        this.board[row][col] = 'Q';
+        this.board[row][col] = ("" + (this.numQueens() + 1)).charAt(0);
         this.queens++;
     }
 
@@ -42,7 +42,7 @@ public class ChessBoard {
     }
 
     public boolean setIfValid(int row, int col) {
-        if (this.board[row][col] == 'Q') {
+        if (this.board[row][col] != '.') {
             return false;
         }
 
@@ -58,7 +58,7 @@ public class ChessBoard {
         // check rows for dupes
         for (int row = 0; row < SIZE; row++) {
             for (int col = 0; col < SIZE; col++) {
-                if (this.board[row][col] == 'Q') {
+                if (this.board[row][col] != '.') {
                     if (!isValid(row, col)) {
                         return false;
                     }
@@ -71,14 +71,14 @@ public class ChessBoard {
     public boolean isValid(int row, int col) {
         // check columns on row
         for (int iCol = 0; iCol < SIZE; iCol++) {
-            if (iCol != col && this.board[row][iCol] == 'Q') {
+            if (iCol != col && this.board[row][iCol] != '.') {
                 return false;
             }
         }
 
         // check rows on column
         for (int iRow = 0; iRow < SIZE; iRow++) {
-            if (iRow != row && this.board[iRow][col] == 'Q') {
+            if (iRow != row && this.board[iRow][col] != '.') {
                 return false;
             }
         }
@@ -86,7 +86,7 @@ public class ChessBoard {
         int iRow = row - 1;
         int iCol = col - 1;
         while (iRow >= 0 && iCol >= 0) {
-            if (this.board[iRow][iCol] == 'Q') {
+            if (this.board[iRow][iCol] != '.') {
                 return false;
             }
             iRow--;
@@ -96,7 +96,7 @@ public class ChessBoard {
         iRow = row + 1;
         iCol = col + 1;
         while (iRow < SIZE && iCol < SIZE) {
-            if (this.board[iRow][iCol] == 'Q') {
+            if (this.board[iRow][iCol] != '.') {
                 return false;
             }
             iRow++;
@@ -106,7 +106,7 @@ public class ChessBoard {
         iRow = row - 1;
         iCol = col + 1;
         while (iRow >= 0 && iCol < SIZE) {
-            if (this.board[iRow][iCol] == 'Q') {
+            if (this.board[iRow][iCol] != '.') {
                 return false;
             }
             iRow--;
@@ -116,7 +116,7 @@ public class ChessBoard {
         iRow = row + 1;
         iCol = col - 1;
         while (iRow < SIZE && iCol >= 0) {
-            if (this.board[iRow][iCol] == 'Q') {
+            if (this.board[iRow][iCol] != '.') {
                 return false;
             }
             iRow++;
