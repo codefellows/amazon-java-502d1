@@ -53,6 +53,11 @@ public class SudokuSolver {
             if (isSet) {
                 System.out.println(coord.row + " " + coord.col + " " + i);
                 System.out.println(board);
+                try {
+                    Thread.sleep(50);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 if (explore(board)) {
                     return true;
                 }
