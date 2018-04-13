@@ -10,7 +10,8 @@ public class CrossWord {
     private Character[][] grid;
     public Set<Clue> clues;
 
-    private Map<Coord, Set<Clue>> contestedLetters;
+    // Having trouble with Map<Coord, Set<Clue>> so I'm using strings.
+    private Map<String, Set<String>> contestedLetters;
 
     public CrossWord(Character[][] grid) {
         this.grid = grid;
@@ -25,11 +26,8 @@ public class CrossWord {
                    this.grid[row][col] = EMPTY;
 
                     Coord coord = new Coord(row, col);
-                    System.out.println("setting " + coord);
-                    contestedLetters.put(coord, new HashSet<>());
-
-                    Coord c2 = new Coord(row, col);
-                    System.out.println("getting " + c2 + " " + contestedLetters.get(c2));
+                    Set<String> set = new HashSet<>();
+                    contestedLetters.put(coord.toString(), set);
                 }
             }
         }
@@ -187,8 +185,7 @@ public class CrossWord {
 
             // register this space with this clue.
             Coord coord = new Coord(row0, col0 + i);
-            System.out.println("getting " + coord);
-            contestedLetters.get(coord).add(clue);
+            contestedLetters.get(coord.toString()).add(clue.toString());
         }
 
         clue.setAcross(word);
@@ -213,8 +210,7 @@ public class CrossWord {
 
             // register this space with this clue.
             Coord coord = new Coord(row0 + i, col0);
-            System.out.println("getting " + coord);
-            contestedLetters.get(coord).add(clue);
+            contestedLetters.get(coord.toString()).add(clue.toString());
         }
 
         clue.setDown(word);
@@ -227,8 +223,8 @@ public class CrossWord {
         int col0 = clue.getCol();
 
         for (int i = 0; i < length; i++) {
-            Set<Clue> cluesAtCoord = contestedLetters.get(Coord.fromClue(clue));
-            cluesAtCoord.remove(clue);
+            Set<String> cluesAtCoord = contestedLetters.get(Coord.fromClue(clue).toString());
+            cluesAtCoord.remove(clue.toString());
 
             // only erase the letter if no clue claims ownership of it
             if (cluesAtCoord.isEmpty()) {
@@ -245,8 +241,8 @@ public class CrossWord {
         int col0 = clue.getCol();
 
         for (int i = 0; i < length; i++) {
-            Set<Clue> cluesAtCoord = contestedLetters.get(Coord.fromClue(clue));
-            cluesAtCoord.remove(clue);
+            Set<String> cluesAtCoord = contestedLetters.get(Coord.fromClue(clue).toString());
+            cluesAtCoord.remove(clue.toString());
 
             // only erase the letter if no clue claims ownership of it
             if (cluesAtCoord.isEmpty()) {
