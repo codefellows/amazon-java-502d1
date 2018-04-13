@@ -3,6 +3,7 @@ import java.util.Set;
 
 public class CrossWord {
     private static final char FILLED = '#';
+    private static final char EMPTY = ' ';
 
     private Character[][] grid;
     public Set<Clue> clues;
@@ -24,6 +25,15 @@ public class CrossWord {
     public Clue getClueAt(int row, int col) {
         for (Clue clue : this.clues) {
             if (clue.getRow() == row && clue.getCol() == col) {
+                return clue;
+            }
+        }
+        return null;
+    }
+
+    public Clue getClueByNumber(int number) {
+        for (Clue clue : this.clues) {
+            if (clue.getNumber() == number) {
                 return clue;
             }
         }
@@ -120,22 +130,50 @@ public class CrossWord {
     }
 
     public boolean isSolved() {
-        return false;
+        for (Clue clue : this.clues) {
+            if (!clue.isSolved()) {
+                return false;
+            }
+        }
+        return true;
     }
 
-    public void setAcross(Clue clue, String word) {
-
+    public Clue getUnsolvedClue() {
+        for (Clue clue : this.clues) {
+            if (!clue.isSolved()) {
+                return clue;
+            }
+        }
+        return null;
     }
 
-    public void unsetAcross(Clue clue, String word) {
+    public boolean attemptClueAcross(Clue clue, String word) {
+        int row0 = clue.getRow();
+        int col0 = clue.getCol();
 
+        for (int i = 0; i < word.length(); i++) {
+            char wordChar = word.charAt(i);
+            char currentChar = this.getCharAt(row0, col0 + i);
+            if (currentChar != EMPTY && wordChar != currentChar) {
+                return false;
+            }
+        }
+        clue.setAcross(word);
+        return true;
     }
 
-    public void setDown(Clue clue, String word) {
+    public boolean attemptClueDown(Clue clue, String word) {
+        int row0 = clue.getRow();
+        int col0 = clue.getCol();
 
-    }
-
-    public void unsetDown(Clue clue, String word) {
-
+        for (int i = 0; i < word.length(); i++) {
+            char wordChar = word.charAt(i);
+            char currentChar = this.getCharAt(row0 + 1, col0);
+            if (currentChar != EMPTY && wordChar != currentChar) {
+                return false;
+            }
+        }
+        clue.setDown(word);
+        return true;
     }
 }

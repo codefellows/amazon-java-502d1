@@ -7,8 +7,11 @@ public class Clue {
     private int lengthAcross;
     private int lengthDown;
 
-    private boolean isSolved;
-    private String answer;
+    private boolean isAcrossSolved;
+    private String answerAcross;
+
+    private boolean isDownSolved;
+    private String answerDown;
 
     public Clue(int row, int col, int number, boolean isAcross, boolean isDown) {
         this.row = row;
@@ -20,8 +23,11 @@ public class Clue {
         this.lengthAcross = 0;
         this.lengthDown = 0;
 
-        this.isSolved = false;
-        this.answer = null;
+        isAcrossSolved = false;
+        answerAcross = null;
+
+        isDownSolved = false;
+        answerDown = null;
     }
 
     @Override
@@ -43,6 +49,10 @@ public class Clue {
 
     public int getCol() {
         return this.col;
+    }
+
+    public int getNumber() {
+        return this.number;
     }
 
     public void setLengthAcross(int length) {
@@ -73,5 +83,35 @@ public class Clue {
     @Override
     public int hashCode() {
         return toString().hashCode();
+    }
+
+    public void setAcross(String word) {
+        this.answerAcross = word;
+        this.isAcrossSolved = true;
+    }
+
+    public void unsetAcross() {
+        this.answerAcross = null;
+        this.isAcrossSolved = false;
+    }
+
+    public void setDown(String word) {
+        this.answerDown = word;
+        this.isDownSolved = true;
+    }
+
+    public void unsetDown() {
+        this.answerDown = null;
+        this.isDownSolved = false;
+    }
+
+    public boolean isSolved() {
+        if (this.isAcross && !this.isAcrossSolved) {
+            return false;
+        }
+        if (this.isDown && !this.isDownSolved) {
+            return false;
+        }
+        return true;
     }
 }

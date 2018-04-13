@@ -129,4 +129,45 @@ public class CrossWordTest {
         assertEquals(expected, actual);
     }
 
+    @Test
+    public void testAttemptClueDown() {
+        CrossWord puzzle = new CrossWord(CrossWordInputs.small);
+        Clue c1 = puzzle.getClueAt(0, 0);
+
+        boolean b1 = puzzle.attemptClueAcross(c1, "hello");
+        assertEquals(true, b1);
+        assertEquals(false, c1.isSolved());
+
+        boolean b2 = puzzle.attemptClueDown(c1, "habit");
+        assertEquals(true, b2);
+        assertEquals(true, c1.isSolved());
+    }
+
+    @Test
+    public void testPuzzleSolved() {
+        CrossWord puzzle = new CrossWord(CrossWordInputs.small);
+        Clue c1 = puzzle.getClueByNumber(1);
+        Clue c2 = puzzle.getClueByNumber(2);
+        Clue c3 = puzzle.getClueByNumber(3);
+        Clue c4 = puzzle.getClueByNumber(4);
+        Clue c5 = puzzle.getClueByNumber(5);
+
+        // hello
+        // a e z
+        // bimbo
+        // i m n
+        // trace
+        puzzle.attemptClueAcross(c1, "hello");
+        puzzle.attemptClueDown(c1, "habit");
+        assertEquals(false, puzzle.isSolved());
+
+        puzzle.attemptClueDown(c2, "lemma");
+        puzzle.attemptClueDown(c3, "ozone");
+        assertEquals(false, puzzle.isSolved());
+
+        puzzle.attemptClueAcross(c4, "bimbo");
+        puzzle.attemptClueAcross(c5, "trace");
+        assertEquals(true, puzzle.isSolved());
+    }
+
 }
