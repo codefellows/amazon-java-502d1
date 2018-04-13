@@ -32,6 +32,9 @@ public class Clue {
         return String.format(format, this.number, this.row, this.col, this.isAcross, this.isDown);
     }
 
+    // Override the hashcode to use the toString representation
+    // so Set.equals() will compare Sets of Clues properly.
+    // If this is not Overrode then it uses Object memory-location equality.
     @Override
     public int hashCode() {
         return toString().hashCode();
