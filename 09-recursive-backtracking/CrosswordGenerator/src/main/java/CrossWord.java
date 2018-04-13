@@ -1,4 +1,6 @@
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 public class CrossWord {
@@ -8,9 +10,29 @@ public class CrossWord {
     private Character[][] grid;
     public Set<Clue> clues;
 
+    private Map<Coord, Set<Clue>> contestedLetters;
+
     public CrossWord(Character[][] grid) {
         this.grid = grid;
         this.clues = this.findStarts();
+
+        contestedLetters = new HashMap<>();
+
+        // explicitly set empty cells to empty.
+        for (int row = 0; row < this.grid.length; row++) {
+            for (int col = 0; col < this.grid.length; col++) {
+                if (this.grid[row][col] != FILLED) {
+                   this.grid[row][col] = EMPTY;
+
+                    Coord coord = new Coord(row, col);
+                    System.out.println("setting " + coord);
+                    contestedLetters.put(coord, new HashSet<>());
+
+                    Coord c2 = new Coord(row, col);
+                    System.out.println("getting " + c2 + " " + contestedLetters.get(c2));
+                }
+            }
+        }
     }
 
     public char getCharAt(int row, int col) {
@@ -158,6 +180,17 @@ public class CrossWord {
                 return false;
             }
         }
+
+        // write the letters onto the board
+        for (int i = 0; i < word.length(); i++) {
+            this.grid[row0][col0 + i] = word.charAt(i);
+
+            // register this space with this clue.
+            Coord coord = new Coord(row0, col0 + i);
+            System.out.println("getting " + coord);
+            contestedLetters.get(coord).add(clue);
+        }
+
         clue.setAcross(word);
         return true;
     }
@@ -173,7 +206,54 @@ public class CrossWord {
                 return false;
             }
         }
+
+        // write the letters onto the board
+        for (int i = 0; i < word.length(); i++) {
+            this.grid[row0 + i][col0] = word.charAt(i);
+
+            // register this space with this clue.
+            Coord coord = new Coord(row0 + i, col0);
+            System.out.println("getting " + coord);
+            contestedLetters.get(coord).add(clue);
+        }
+
         clue.setDown(word);
         return true;
+    }
+
+    public void unsetClueAcross(Clue clue) {
+        int length = clue.getLengthAcross();
+        int row0 = clue.getRow();
+        int col0 = clue.getCol();
+
+        for (int i = 0; i < length; i++) {
+            Set<Clue> cluesAtCoord = contestedLetters.get(Coord.fromClue(clue));
+            cluesAtCoord.remove(clue);
+
+            // only erase the letter if no clue claims ownership of it
+            if (cluesAtCoord.isEmpty()) {
+                this.grid[row0][col0 + i] = EMPTY;
+            }
+        }
+
+        clue.unsetAcross();
+    }
+
+    public void unsetClueDown(Clue clue) {
+        int length = clue.getLengthDown();
+        int row0 = clue.getRow();
+        int col0 = clue.getCol();
+
+        for (int i = 0; i < length; i++) {
+            Set<Clue> cluesAtCoord = contestedLetters.get(Coord.fromClue(clue));
+            cluesAtCoord.remove(clue);
+
+            // only erase the letter if no clue claims ownership of it
+            if (cluesAtCoord.isEmpty()) {
+                this.grid[row0 + i][col0] = EMPTY;
+            }
+        }
+
+        clue.unsetDown();
     }
 }

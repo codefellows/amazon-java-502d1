@@ -170,4 +170,80 @@ public class CrossWordTest {
         assertEquals(true, puzzle.isSolved());
     }
 
+    @Test
+    public void testWordWritten() {
+        CrossWord puzzle = new CrossWord(CrossWordInputs.small);
+        Clue c1 = puzzle.getClueByNumber(1);
+
+        puzzle.attemptClueAcross(c1, "hello");
+
+        String actual = puzzle.toString();
+        String expected =
+                "hello\n" +
+                " # # \n" +
+                "     \n" +
+                " # # \n" +
+                "     \n";
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testWordUnwritten() {
+        CrossWord puzzle = new CrossWord(CrossWordInputs.small);
+        Clue c1 = puzzle.getClueByNumber(1);
+
+        puzzle.attemptClueAcross(c1, "hello");
+
+        String actual = puzzle.toString();
+        String expected =
+                "hello\n" +
+                        " # # \n" +
+                        "     \n" +
+                        " # # \n" +
+                        "     \n";
+
+        puzzle.unsetClueAcross(c1);
+
+        actual = puzzle.toString();
+        expected =
+            "     \n" +
+            " # # \n" +
+            "     \n" +
+            " # # \n" +
+            "     \n";
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testWordUnwrittenContested() {
+        CrossWord puzzle = new CrossWord(CrossWordInputs.small);
+        Clue c1 = puzzle.getClueByNumber(1);
+
+        puzzle.attemptClueAcross(c1, "hello");
+        puzzle.attemptClueDown(c1, "habit");
+
+        String actual = puzzle.toString();
+        String expected =
+                "hello\n" +
+                "a# # \n" +
+                "b    \n" +
+                "i# # \n" +
+                "t    \n";
+        assertEquals(expected, actual);
+
+        puzzle.unsetClueAcross(c1);
+
+        // make sure the "h" in habit remains
+        // after "hello" is removed
+        actual = puzzle.toString();
+        expected =
+                "h    \n" +
+                "a# # \n" +
+                "b    \n" +
+                "i# # \n" +
+                "t    \n";
+        assertEquals(expected, actual);
+    }
 }
