@@ -11,7 +11,9 @@ public class CrossWord {
     }
 
     public char getCharAt(int row, int col) {
-        if (row < 0 || col < 0 || row >= this.grid.length || col >= this.grid.length) {
+        if (row < 0 || col < 0 ||
+            row >= this.grid.length ||
+            col >= this.grid.length) {
             return '#';
         }
         return this.grid[row][col];
