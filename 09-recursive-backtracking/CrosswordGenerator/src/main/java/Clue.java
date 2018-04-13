@@ -4,6 +4,11 @@ public class Clue {
     private int number;
     private boolean isAcross;
     private boolean isDown;
+    private int lengthAcross;
+    private int lengthDown;
+
+    private boolean isSolved;
+    private String answer;
 
     public Clue(int row, int col, int number, boolean isAcross, boolean isDown) {
         this.row = row;
@@ -11,6 +16,12 @@ public class Clue {
         this.number = number;
         this.isAcross = isAcross;
         this.isDown = isDown;
+
+        this.lengthAcross = 0;
+        this.lengthDown = 0;
+
+        this.isSolved = false;
+        this.answer = null;
     }
 
     @Override
@@ -24,6 +35,30 @@ public class Clue {
                 this.number == other.number &&
                 this.isAcross == other.isAcross &&
                 this.isDown == other.isDown;
+    }
+
+    public int getRow() {
+        return this.row;
+    }
+
+    public int getCol() {
+        return this.col;
+    }
+
+    public void setLengthAcross(int length) {
+        this.lengthAcross = length;
+    }
+
+    public void setLengthDown(int length) {
+        this.lengthDown = length;
+    }
+
+    public int getLengthAcross() {
+        return this.lengthAcross;
+    }
+
+    public int getLengthDown() {
+        return this.lengthDown;
     }
 
     @Override

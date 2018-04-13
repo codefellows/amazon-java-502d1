@@ -90,6 +90,32 @@ public class CrossWordTest {
     }
 
     @Test
+    public void testLengthAcross() throws Exception {
+        CrossWord puzzle = new CrossWord(CrossWordInputs.small);
+
+        Clue c1 = puzzle.getClueAt(0, 0);
+        Clue c4 = puzzle.getClueAt(2, 0);
+        Clue c5 = puzzle.getClueAt(4, 0);
+
+        assertEquals(5, c1.getLengthAcross());
+        assertEquals(5, c4.getLengthAcross());
+        assertEquals(5, c5.getLengthAcross());
+    }
+
+    @Test
+    public void testLengthDown() throws Exception {
+        CrossWord puzzle = new CrossWord(CrossWordInputs.small);
+
+        Clue c1 = puzzle.getClueAt(0, 0);
+        Clue c2 = puzzle.getClueAt(0, 2);
+        Clue c3 = puzzle.getClueAt(0, 4);
+
+        assertEquals(5, c1.getLengthDown());
+        assertEquals(5, c2.getLengthDown());
+        assertEquals(5, c3.getLengthDown());
+    }
+
+    @Test
     public void testToString() throws Exception {
         CrossWord puzzle = new CrossWord(CrossWordInputs.small);
         String actual = puzzle.toString();
