@@ -20,7 +20,8 @@ public class CrossWordSolver {
 
     public static boolean explore(CrossWord puzzle, Map<Integer, List<String>> words) {
         if (puzzle.isSolved()) {
-            return true;
+            System.out.println(puzzle);
+            return false;
         }
 
         Clue clue = puzzle.getUnsolvedClue();

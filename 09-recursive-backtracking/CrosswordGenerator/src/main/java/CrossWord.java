@@ -223,6 +223,8 @@ public class CrossWord {
         int col0 = clue.getCol();
 
         for (int i = 0; i < length; i++) {
+            // TODO: account for the same clue having two claims for one space
+            // because it has both a across and down clue.
             Set<String> cluesAtCoord = contestedLetters.get(Coord.fromClue(clue).toString());
             cluesAtCoord.remove(clue.toString());
 
