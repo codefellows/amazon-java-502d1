@@ -30,6 +30,31 @@ public class Clue {
         answerDown = null;
     }
 
+    public boolean isAcross() {
+        return this.isAcross;
+    }
+
+    public boolean isDown() {
+        return this.isDown;
+    }
+
+    public int lengthAcross() {
+        return this.lengthAcross;
+    }
+
+    public int lengthDown() {
+        return this.lengthDown;
+    }
+
+    public boolean isSolvedAcross() {
+        return this.isAcrossSolved;
+
+    }
+
+    public boolean isSolvedDown() {
+        return this.isDownSolved;
+    }
+
     @Override
     public boolean equals(Object oo) {
         if (!(oo instanceof Clue)) {
