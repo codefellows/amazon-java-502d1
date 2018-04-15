@@ -198,10 +198,10 @@ public class CrossWordTest {
         String actual = puzzle.toString();
         String expected =
                 "hello\n" +
-                        " # # \n" +
-                        "     \n" +
-                        " # # \n" +
-                        "     \n";
+                " # # \n" +
+                "     \n" +
+                " # # \n" +
+                "     \n";
 
         puzzle.unsetClueAcross(c1);
 

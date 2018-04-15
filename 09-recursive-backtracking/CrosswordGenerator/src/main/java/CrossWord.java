@@ -11,7 +11,7 @@ public class CrossWord {
     public Set<Clue> clues;
 
     // Having trouble with Map<Coord, Set<Clue>> so I'm using strings.
-    private Map<String, Set<String>> contestedLetters;
+    private Map<String, Counter> contestedLetters;
 
     public CrossWord(Character[][] grid) {
         this.grid = grid;
@@ -26,8 +26,7 @@ public class CrossWord {
                    this.grid[row][col] = EMPTY;
 
                     Coord coord = new Coord(row, col);
-                    Set<String> set = new HashSet<>();
-                    contestedLetters.put(coord.toString(), set);
+                    contestedLetters.put(coord.toString(), new Counter());
                 }
             }
         }
@@ -185,7 +184,7 @@ public class CrossWord {
 
             // register this space with this clue.
             Coord coord = new Coord(row0, col0 + i);
-            contestedLetters.get(coord.toString()).add(clue.toString());
+            contestedLetters.get(coord.toString()).increment();
         }
 
         clue.setAcross(word);
@@ -210,7 +209,7 @@ public class CrossWord {
 
             // register this space with this clue.
             Coord coord = new Coord(row0 + i, col0);
-            contestedLetters.get(coord.toString()).add(clue.toString());
+            contestedLetters.get(coord.toString()).increment();
         }
 
         clue.setDown(word);
@@ -225,11 +224,11 @@ public class CrossWord {
         for (int i = 0; i < length; i++) {
             // TODO: account for the same clue having two claims for one space
             // because it has both a across and down clue.
-            Set<String> cluesAtCoord = contestedLetters.get(Coord.fromClue(clue).toString());
-            cluesAtCoord.remove(clue.toString());
+            Counter counter = contestedLetters.get(new Coord(row0, col0 + i).toString());
+            counter.decrement();
 
             // only erase the letter if no clue claims ownership of it
-            if (cluesAtCoord.isEmpty()) {
+            if (counter.value() == 0) {
                 this.grid[row0][col0 + i] = EMPTY;
             }
         }
@@ -243,11 +242,11 @@ public class CrossWord {
         int col0 = clue.getCol();
 
         for (int i = 0; i < length; i++) {
-            Set<String> cluesAtCoord = contestedLetters.get(Coord.fromClue(clue).toString());
-            cluesAtCoord.remove(clue.toString());
+            Counter counter = contestedLetters.get(new Coord(row0 + 1, col0).toString());
+            counter.decrement();
 
             // only erase the letter if no clue claims ownership of it
-            if (cluesAtCoord.isEmpty()) {
+            if (counter.value() == 0) {
                 this.grid[row0 + i][col0] = EMPTY;
             }
         }
