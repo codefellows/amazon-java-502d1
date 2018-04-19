@@ -1,10 +1,10 @@
 import java.util.Iterator;
 
-public class Grid implements Iterable<Coord> {
+public class Grid<E> implements Iterable<CoordValue<E>> {
     private int rows;
     private int cols;
 
-    private Object[][] grid;
+    private E[][] grid;
 
     // build a square grid.
     public Grid(int size) {
@@ -14,22 +14,22 @@ public class Grid implements Iterable<Coord> {
     public Grid(int rows, int cols) {
         this.rows = rows;
         this.cols = cols;
-        this.grid = new Object[rows][cols];
+        this.grid = (E[][]) new Object[rows][cols];
     }
 
-    public Object get(Coord coord) {
+    public E get(Coord coord) {
         return this.get(coord.row, coord.col);
     }
 
-    public Object get(int row, int col) {
+    public E get(int row, int col) {
         return this.grid[row][col];
     }
 
-    public void set(Coord coord, Object val) {
+    public void set(Coord coord, E val) {
         this.set(coord.row, coord.col, val);
     }
 
-    public void set(int row, int col, Object val) {
+    public void set(int row, int col, E val) {
         this.grid[row][col] = val;
     }
 
@@ -45,30 +45,63 @@ public class Grid implements Iterable<Coord> {
     }
 
     @Override
-    public Iterator<Coord> iterator() {
-        int maxRows = this.rows;
-        int maxCols = this.cols;
-
-        Iterator<Coord> iter = new Iterator<Coord>() {
-            private int row = 0;
-            private int col = 0;
+    public Iterator<CoordValue<E>> iterator() {
+        Iterator<CoordValue<E>> iter = new Iterator() {
+            int row = 0;
+            int col = 0;
+            int maxRows = rows;
+            int maxCols = cols;
 
             @Override
             public boolean hasNext() {
-                return row <= maxRows;
+                return row < maxRows;
             }
 
             @Override
-            public Coord next() {
-                Coord coord = new Coord(row, col);
+            public CoordValue<E> next() {
+                E val = grid[row][col];
+                CoordValue result = new CoordValue(row, col, val);
                 col++;
                 if (col % maxCols == 0) {
                     col = 0;
                     row++;
                 }
-                return coord;
+                return result;
             }
         };
         return iter;
     }
+
+    public Iterator<Integer> getRows() {
+        return new Iterator<Integer>() {
+            int row = 0;
+
+            @Override
+            public boolean hasNext() {
+                return row < rows;
+            }
+
+            @Override
+            public Integer next() {
+                return row++;
+            }
+        };
+    }
+
+    public Iterator<Integer> getCols() {
+        return new Iterator<Integer>() {
+            int col = 0;
+
+            @Override
+            public boolean hasNext() {
+                return col < cols;
+            }
+
+            @Override
+            public Integer next() {
+                return col++;
+            }
+        };
+    }
+
 }
