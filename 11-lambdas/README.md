@@ -81,3 +81,18 @@ p1 -> System.out.println("one parameters here, without parenthesis");
 
 () -> "if it's a one-liner like this then this String returns too!";
 ```
+
+## Saving as Objects
+
+```java
+Arrays.sort(rosterAsArray,
+    (a, b) -> Person.compareByAge(a, b)
+);
+```
+
+```java
+Age(a, b) -> Person.compareByAge(a, b)
+Arrays.sort(rosterAsArray,
+    (a, b) -> Person.compareByAge(a, b)
+);
+```
