@@ -1,7 +1,7 @@
 import java.util.Arrays;
 import java.util.Comparator;
 
-public class Main {
+public class PersonComparator {
     public static void main(String[] args) {
         Person baby = new Person(2);
         Person teen = new Person(13);
