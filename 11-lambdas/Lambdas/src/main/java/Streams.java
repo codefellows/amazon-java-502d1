@@ -10,8 +10,5 @@ public class Streams {
                 .map(person -> person.age)
                 .collect(Collectors.toList());
         System.out.println(ages);
-
-        Consumer<People[]> s = Person::getPeople;
-        BiPr
     }
 }
