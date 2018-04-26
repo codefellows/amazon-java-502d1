@@ -3,6 +3,14 @@
 ## Resources
 * [Java Tutorials: Lambdas](https://docs.oracle.com/javase/tutorial/java/javaOO/lambdaexpressions.html)
 * [Jenkov: Lambdas](http://tutorials.jenkov.com/java/lambda-expressions.html) 
+* [java.util.function docs](https://docs.oracle.com/javase/8/docs/api/java/util/function/package-summary.html)
+
+> Java 8 formalized the notion that interfaces with a single abstract method
+> deserve special treatment. These interfaces are now knownas _functional interfaces_,
+> and the language allows you to create instances of these interfaces using
+> _lamba expressions_.
+>
+> -- Effective Java, 3rd Edition, "Lambdas and Streams"
 
 Java lambda expressions are new in Java 8. Java lambda expressions are Java's
 first step into functional programming. A Java lambda expression is thus
@@ -83,7 +91,6 @@ p1 -> System.out.println("one parameters here, without parenthesis");
 ```
 
 ## Saving as Objects
-
 ```java
 Arrays.sort(rosterAsArray,
     (a, b) -> Person.compareByAge(a, b)
@@ -96,3 +103,33 @@ Arrays.sort(rosterAsArray,
     (a, b) -> Person.compareByAge(a, b)
 );
 ```
+
+## forEach, Map, Filter
+Use `Collectors.toList()` to collect result from a stream and turn them into
+a list.
+
+```java
+Person[] people = Person.getPeople();
+List<Integer> ages = Arrays.stream(people)
+	.map(person -> person.age)
+	.collect(Collectors.toList());
+```
+
+## java.util.function
+Java has a whole collection of common function interfaces built into itself.
+Become familiar with these function interfaces when you build your own classes
+and methods so you can feed lambda expressions into them that fulfill the
+correct type signature.
+
+Flip through [the docs](https://docs.oracle.com/javase/8/docs/api/java/util/function/package-summary.html)
+to see them all.
+
+Common ones include:
+
+* **Function** – it takes one argument and returns a result
+* **Consumer** – it takes one argument and returns no result (represents a side effect)
+* **Supplier** – it takes not argument and returns a result
+* **Predicate** – it takes one argument and returns a boolean
+* **BiFunction** – it takes two arguments and returns a result
+* **BinaryOperator** – it is similar to a BiFunction, taking two arguments and returning a result. The two arguments and the result are all of the same types
+* **UnaryOperator** – it is similar to a Function, taking a single argument and returning a result of the same type
