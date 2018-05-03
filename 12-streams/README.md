@@ -101,5 +101,9 @@ IntSummaryStatistics summary = IntStream.of(1, 23, 6, 4, 24, 45, 57, 56, 34, 23,
   .summaryStatistics();
 ```
 
-
-
+```java
+List<Map.Entry<String, Integer>> top20 = result.entrySet().stream()
+  .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
+  .limit(20)
+  .collect(Collectors.toList());
+```
