@@ -17,19 +17,21 @@ public class JavaStreams {
     public static void main(String[] args) {
         Random rand = new Random();
         List<Integer> data = new ArrayList<>();
-        for (int i = 0; i < 1000000; i++) {
+        for (int i = 0; i < 1_000_000; i++) {
             data.add(rand.nextInt());
         }
         System.out.println("Starting");
 
-//        int result = 0;
-//        for (int i : data) {
-//            result += process(i);
-//        }
+        long streamStart = System.currentTimeMillis();
+        int streamResult = data.parallelStream()
+                .map(x -> process(x))
+                .reduce(Integer::sum)
+                .get();
+        long streamEnd = System.currentTimeMillis();
+        long streamDelta = streamEnd - streamStart;
 
-//        int result = data.stream().map(i -> process(i)).reduce(Integer::sum).get();
-        int result = data.parallelStream().map(i -> process(i)).reduce(Integer::sum).get();
-        System.out.println(result);
+        System.out.println("Stream: " + streamResult);
+        System.out.println("Stream Delta: " + streamDelta);
     }
 }
 
