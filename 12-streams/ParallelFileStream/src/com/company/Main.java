@@ -13,6 +13,8 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
         long start = System.currentTimeMillis();
+        // download the CSV from kaggle at:
+        // https://www.kaggle.com/edumucelli/spotifys-worldwide-daily-song-ranking
         Stream<String> stream = Files.lines(Paths.get("/Users/moonmayor/Fellows/amazon-java-501d1/12-streams/ParallelFileStream/src/com/company/data.csv"));
 
         Map<String, Integer> artistCount = new HashMap<>();
