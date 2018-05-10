@@ -5,6 +5,7 @@
 * [Stack vs Heap](https://stackoverflow.com/a/80113/735468)
 * [Wikipedia: Reference Counting](https://en.wikipedia.org/wiki/Reference_counting)
 * [Garbage Collection in Java 9](https://www.youtube.com/watch?v=OhPGN2Av44E)
+* [Garbage Collection Concepts](https://dev.to/thecodeboss/programming-concepts-garbage-collection)
 
 Garbage collection is the process Java uses to run through memory used by your
 program to determine what's not used any more. As your program runs it makes
@@ -77,6 +78,21 @@ defragment memory. (Like Windows 95 defrag tool). Without compacting memory
 memory can end up porous with lots of small holes all over the place, but no
 large continuous area to place data requiring one long stretch of memory.
 
+## Generational Algorithms
+Generational Garbage Collection takes concepts from copying algorithms, but
+instead of copying all surviving members to a new memory region, it instead
+splits up memory into generational regions based on how old the memory is. The
+rationale behind generational GC is that normally, young memory is garbage
+collected much more frequently than older memory – so therefore the younger
+memory region is scanned to check for unreferenced memory much more frequently
+than older memory regions. If done properly, this saves both time and CPU
+processing because the goal is to scan only the necessary memory.
+
+Older memory regions are certainly still scanned – but not as often as younger
+memory regions. If a block of memory in a younger memory region continues to
+survive, then it can be promoted to an older memory region and will be scanned
+less often.
+
 ## Performance Concerns
 Garbage Collection comes at a cost. C and C++ programmers may scoff at the idea
 because they're used to managing these complexities themselves. Garbage
@@ -90,3 +106,5 @@ considered bad practice.
 
 [Why is calling System.gc() bad practice?](https://stackoverflow.com/questions/2414105/why-is-it-bad-practice-to-call-system-gc/2414621#2414621)
 
+##
+* [Challenge: Graph Connectedness](https://www.codewars.com/kata/graph-operations-part-4-is-it-connected/java)
