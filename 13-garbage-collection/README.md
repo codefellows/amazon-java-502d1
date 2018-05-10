@@ -6,6 +6,7 @@
 * [Wikipedia: Reference Counting](https://en.wikipedia.org/wiki/Reference_counting)
 * [Garbage Collection in Java 9](https://www.youtube.com/watch?v=OhPGN2Av44E)
 * [Garbage Collection Concepts](https://dev.to/thecodeboss/programming-concepts-garbage-collection)
+* [Garbage Collection Visualizations](https://spin.atomicobject.com/2014/09/03/visualizing-garbage-collection-algorithms/)
 
 Garbage collection is the process Java uses to run through memory used by your
 program to determine what's not used any more. As your program runs it makes
