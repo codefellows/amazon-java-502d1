@@ -1,19 +1,35 @@
-public class BinaryCardDeck {
+public class BinaryCard {
     public String[] suits = {"hearts", "diamonds", "clubs", "spades"};
     public String[] faces = {"jack", "queen", "king", "ace"};
 
     public static void main(String[] args) {
-        BinaryCardDeck card = new BinaryCardDeck();
+        BinaryCard card = new BinaryCard();
         System.out.println(card.toString());
     }
 
-    byte data;
-    public BinaryCardDeck() {
+    public byte data;
+    public BinaryCard() {
         int suit = (int) Math.floor(Math.random() * 4);
         int value = (int) Math.floor(Math.random() * 16);
 
         suit = suit << 4;
         this.data = (byte) (suit | value);
+    }
+
+    public int value() {
+        byte valueMask = 0b1111;
+        byte value = (byte) (this.data & valueMask);
+
+        if (value == 0b0000 || value == 0b0001) {
+            return 0;
+        } else if (value == 0b1011) {
+            return 0;
+        }
+
+        if ((value & 0b1100) == 0b1100) {
+            return 10;
+        }
+        return value;
     }
 
     // "ace of hearts"
