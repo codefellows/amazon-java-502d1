@@ -19,7 +19,7 @@ public class KNearestNeighborhoods {
     public static MapPoint BALLARD = new MapPoint("Ballard", 47.670209, -122.387887);
     public static MapPoint BEACON_HILL = new MapPoint("Beacon Hill", 47.577061, -122.310106);
     public static MapPoint WHITE_CENTER = new MapPoint("White Center", 47.510911, -122.355677);
-    public static MapPoint[] ALL_POINTS = {
+    public static MapPoint[] UNCLASSIFIED_POINTS = {
         FREMONT_CENTER,
         WALLINGFORD_CENTER,
         AMBIGUOUS_CENTER,
@@ -33,7 +33,7 @@ public class KNearestNeighborhoods {
             String csvPath = "/Users/moonmayor/Fellows/amazon-java-501d1/16-k-nearest-neighbors/SeattleKNearestNeighborhoods/src/main/resources/listings.csv";
             CSVReader reader = new CSVReader(new FileReader(csvPath));
             List<MapPoint> points = reader.readAll().stream()
-            .skip(1)
+            .skip(1) // skip over the CSV header row.
             .map(columns -> {
                 //String neighborhood = columns[10];
                 String neighborhood = columns[36];
@@ -44,7 +44,7 @@ public class KNearestNeighborhoods {
             .filter(bnb -> bnb != null)
             .collect(Collectors.toList());
 
-            for (MapPoint target : ALL_POINTS) {
+            for (MapPoint target : UNCLASSIFIED_POINTS) {
                 String label = kNearestNeighbords(5, points, target);
                 System.out.println(label);
             }
