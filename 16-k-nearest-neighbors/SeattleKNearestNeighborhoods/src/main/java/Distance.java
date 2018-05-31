@@ -6,4 +6,8 @@ public class Distance {
         this.distance = distance;
         this.location = location;
     }
+
+    public double getDistance() {
+        return this.distance;
+    }
 }

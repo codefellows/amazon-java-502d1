@@ -56,14 +56,7 @@ public class KNearestNeighborhoods {
     public static String kNearestNeighbords(int k, List<MapPoint> labels, MapPoint bnb) {
         List<String> votes = labels.stream()
         .map(p1 -> p1.distance(bnb))
-        .sorted((d1, d2) -> {
-            if (d1.distance < d2.distance) {
-                return -1;
-            } else if (d1.distance > d2.distance) {
-                return 1;
-            }
-            return 0;
-        })
+        .sorted(Comparator.comparingDouble(Distance::getDistance))
         .limit(k)
         .map(dd -> dd.location.neighborhood)
         .collect(Collectors.toList());
