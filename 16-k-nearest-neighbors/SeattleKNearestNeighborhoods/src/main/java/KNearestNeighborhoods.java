@@ -6,6 +6,7 @@ import com.opencsv.CSVReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class KNearestNeighborhoods {
@@ -45,7 +46,8 @@ public class KNearestNeighborhoods {
 
             for (MapPoint target : UNCLASSIFIED_POINTS) {
                 String label = kNearestNeighbors(5, points, target);
-                System.out.println(label);
+                System.out.println("Neighborhood: " + label);
+                System.out.println();
             }
         } catch (IOException e) {
             System.out.println(e.getMessage());
@@ -53,28 +55,16 @@ public class KNearestNeighborhoods {
     }
 
     public static String kNearestNeighbors(int k, List<MapPoint> labels, MapPoint bnb) {
-        List<String> votes = labels.stream()
+        return labels.stream()
         .map(p1 -> p1.distance(bnb))
         .sorted(Comparator.comparingDouble(Distance::getDistance))
         .limit(k)
         .map(dd -> dd.location.neighborhood)
-        .collect(Collectors.toList());
-        System.out.println(votes);
-
-        // tally each label
-        Map<String, Integer> tally = new HashMap<>();
-        votes.forEach(vote -> {
-            if (!tally.containsKey(vote)) {
-               tally.put(vote, 0);
-            }
-            tally.put(vote, tally.get(vote) + 1);
-        });
-
-        // grab the most tallied label
-        String label = tally.entrySet().stream()
-        .sorted((kv1,kv2) -> -1 * Integer.compare(kv1.getValue(), kv2.getValue()))
+        .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))
+        .entrySet()
+        .stream()
+        .sorted((kv1,kv2) -> -1 * Long.compare(kv1.getValue(), kv2.getValue()))
         .limit(1)
         .collect(Collectors.toList()).get(0).getKey();
-        return label;
     }
 }
