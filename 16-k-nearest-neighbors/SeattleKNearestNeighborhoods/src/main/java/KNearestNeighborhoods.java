@@ -5,27 +5,21 @@ import com.opencsv.CSVReader;
 
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class KNearestNeighborhoods {
     // https://www.google.com/maps/@47.6494201,-122.3322363,14z
-    public static MapPoint FREMONT_CENTER = new MapPoint("Fremont", 47.658178, -122.360320);
-    public static MapPoint WALLINGFORD_CENTER = new MapPoint("Wallingford", 47.661966, -122.330176);
-    public static MapPoint AMBIGUOUS_CENTER = new MapPoint("Unknown", 47.657919,-122.342450);
-    public static MapPoint BALLARD = new MapPoint("Ballard", 47.670209, -122.387887);
-    public static MapPoint BEACON_HILL = new MapPoint("Beacon Hill", 47.577061, -122.310106);
-    public static MapPoint WHITE_CENTER = new MapPoint("White Center", 47.510911, -122.355677);
     public static MapPoint[] UNCLASSIFIED_POINTS = {
-        FREMONT_CENTER,
-        WALLINGFORD_CENTER,
-        AMBIGUOUS_CENTER,
-        BALLARD,
-        BEACON_HILL,
-        WHITE_CENTER,
+        new MapPoint("Fremont", 47.658178, -122.360320),
+        new MapPoint("Wallingford", 47.661966, -122.330176),
+        new MapPoint("Unknown", 47.657919,-122.342450),
+        new MapPoint("Ballard", 47.670209, -122.387887),
+        new MapPoint("Beacon Hill", 47.577061, -122.310106),
+        new MapPoint("White Center", 47.510911, -122.355677),
+        new MapPoint("Code Fellows", 47.618306, -122.351721),
+        new MapPoint("Low Flying Hawk", 47.616552, -122.331853),
+        new MapPoint("South Beacon Hill", 47.533608, -122.288862)
     };
 
     public static void main(String[] args) {
@@ -35,7 +29,6 @@ public class KNearestNeighborhoods {
             List<MapPoint> points = reader.readAll().stream()
             .skip(1) // skip over the CSV header row.
             .map(columns -> {
-                //String neighborhood = columns[10];
                 String neighborhood = columns[36];
                 String latitude = columns[45];
                 String longitude = columns[46];
@@ -43,6 +36,11 @@ public class KNearestNeighborhoods {
             })
             .filter(bnb -> bnb != null)
             .collect(Collectors.toList());
+
+            Set<String> neighborhoods =
+                points.stream().map(pp -> pp.neighborhood).collect(Collectors.toSet());
+            neighborhoods.forEach(System.out::println);
+            System.out.println();
 
             for (MapPoint target : UNCLASSIFIED_POINTS) {
                 String label = kNearestNeighbords(5, points, target);
@@ -62,7 +60,7 @@ public class KNearestNeighborhoods {
         .collect(Collectors.toList());
         System.out.println(votes);
 
-        // determine majority
+        // tally each label
         Map<String, Integer> tally = new HashMap<>();
         votes.forEach(vote -> {
             if (!tally.containsKey(vote)) {
@@ -71,15 +69,11 @@ public class KNearestNeighborhoods {
             tally.put(vote, tally.get(vote) + 1);
         });
 
-        String winner = votes.get(0);
-        int most = 0;
-        for (Map.Entry<String, Integer> entry : tally.entrySet()) {
-            if (entry.getValue() > most) {
-                winner = entry.getKey();
-                most = entry.getValue();
-            }
-        }
-
-        return winner;
+        // grab the most tallied label
+        String label = tally.entrySet().stream()
+        .sorted((kv1,kv2) -> -1 * Integer.compare(kv1.getValue(), kv2.getValue()))
+        .limit(1)
+        .collect(Collectors.toList()).get(0).getKey();
+        return label;
     }
 }
