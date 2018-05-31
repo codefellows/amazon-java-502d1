@@ -6,7 +6,9 @@ import com.opencsv.CSVReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class KNearestNeighborhoods {
@@ -43,7 +45,7 @@ public class KNearestNeighborhoods {
             .collect(Collectors.toList());
 
             for (MapPoint target : ALL_POINTS) {
-                String label = kNearestNeighbords(3, points, target);
+                String label = kNearestNeighbords(5, points, target);
                 System.out.println(label);
             }
         } catch (IOException e) {
@@ -67,6 +69,24 @@ public class KNearestNeighborhoods {
         .collect(Collectors.toList());
         System.out.println(votes);
 
-        return votes.get(0);
+        // determine majority
+        Map<String, Integer> tally = new HashMap<>();
+        votes.forEach(vote -> {
+            if (!tally.containsKey(vote)) {
+               tally.put(vote, 0);
+            }
+            tally.put(vote, tally.get(vote) + 1);
+        });
+
+        String winner = votes.get(0);
+        int most = 0;
+        for (Map.Entry<String, Integer> entry : tally.entrySet()) {
+            if (entry.getValue() > most) {
+                winner = entry.getKey();
+                most = entry.getValue();
+            }
+        }
+
+        return winner;
     }
 }
