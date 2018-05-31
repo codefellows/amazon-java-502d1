@@ -19,7 +19,8 @@ public class KNearestNeighborhoods {
         new MapPoint("White Center", 47.510911, -122.355677),
         new MapPoint("Code Fellows", 47.618306, -122.351721),
         new MapPoint("Low Flying Hawk", 47.616552, -122.331853),
-        new MapPoint("South Beacon Hill", 47.533608, -122.288862)
+        new MapPoint("South Beacon Hill", 47.533608, -122.288862),
+        new MapPoint("Montana", 47.762143, -113.095031)
     };
 
     public static void main(String[] args) {
@@ -43,7 +44,7 @@ public class KNearestNeighborhoods {
             System.out.println();
 
             for (MapPoint target : UNCLASSIFIED_POINTS) {
-                String label = kNearestNeighbords(5, points, target);
+                String label = kNearestNeighbors(5, points, target);
                 System.out.println(label);
             }
         } catch (IOException e) {
@@ -51,7 +52,7 @@ public class KNearestNeighborhoods {
         }
     }
 
-    public static String kNearestNeighbords(int k, List<MapPoint> labels, MapPoint bnb) {
+    public static String kNearestNeighbors(int k, List<MapPoint> labels, MapPoint bnb) {
         List<String> votes = labels.stream()
         .map(p1 -> p1.distance(bnb))
         .sorted(Comparator.comparingDouble(Distance::getDistance))
