@@ -1,5 +1,5 @@
 public class MapPoint {
-    public String description;
+    public String neighborhood;
     public double latitude;
     public double longitude;
 
@@ -12,29 +12,10 @@ public class MapPoint {
         return new MapPoint(description, latitude, longitude);
     }
 
-    public MapPoint(String description, double latt, double longg) {
-        this.description = description;
+    public MapPoint(String neighborhood, double latt, double longg) {
+        this.neighborhood = neighborhood;
         this.latitude = latt;
         this.longitude = longg;
-    }
-
-    public String neighborhood() {
-        if (isWallingford() && isFremont()) {
-            return "Wallingford/Fremont";
-        } else if (isWallingford()) {
-            return "Wallingford";
-        } else if (isFremont()) {
-            return "Fremont";
-        }
-        return "Unknown";
-    }
-
-    public boolean isWallingford() {
-        return this.description.contains("Wallingford");
-    }
-
-    public boolean isFremont() {
-        return this.description.contains("Fremont");
     }
 
     public Distance distance(MapPoint other) {
@@ -45,6 +26,6 @@ public class MapPoint {
     }
 
     public String toString() {
-        return this.neighborhood();
+        return this.neighborhood;
     }
 }

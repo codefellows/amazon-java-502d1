@@ -14,6 +14,17 @@ public class KNearestNeighborhoods {
     public static MapPoint FREMONT_CENTER = new MapPoint("Fremont", 47.658178, -122.360320);
     public static MapPoint WALLINGFORD_CENTER = new MapPoint("Wallingford", 47.661966, -122.330176);
     public static MapPoint AMBIGUOUS_CENTER = new MapPoint("Unknown", 47.657919,-122.342450);
+    public static MapPoint BALLARD = new MapPoint("Ballard", 47.670209, -122.387887);
+    public static MapPoint BEACON_HILL = new MapPoint("Beacon Hill", 47.577061, -122.310106);
+    public static MapPoint WHITE_CENTER = new MapPoint("White Center", 47.510911, -122.355677);
+    public static MapPoint[] ALL_POINTS = {
+        FREMONT_CENTER,
+        WALLINGFORD_CENTER,
+        AMBIGUOUS_CENTER,
+        BALLARD,
+        BEACON_HILL,
+        WHITE_CENTER,
+    };
 
     public static void main(String[] args) {
         try {
@@ -21,36 +32,20 @@ public class KNearestNeighborhoods {
             CSVReader reader = new CSVReader(new FileReader(csvPath));
             List<MapPoint> points = reader.readAll().stream()
             .skip(1)
-            .map(cols -> {
-                System.out.println(cols);
-                return cols;
-            })
             .map(columns -> {
                 //String neighborhood = columns[10];
                 String neighborhood = columns[36];
                 String latitude = columns[45];
                 String longitude = columns[46];
-
-                System.out.println("Neighborhood: " + neighborhood);
-                System.out.println("Latitude: " + latitude);
-                System.out.println("Longitude: " + longitude);
-                System.out.println();
                 return MapPoint.fromStrings(neighborhood, latitude, longitude);
             })
             .filter(bnb -> bnb != null)
-            .filter(bnb -> bnb.isFremont() || bnb.isWallingford())
             .collect(Collectors.toList());
 
-            System.out.println("points: " + points);
-            System.out.println("Total points: " + points.size());
-            System.out.println();
-
-            String label1 = kNearestNeighbords(3, points, FREMONT_CENTER);
-            System.out.println(label1);
-            String label2 = kNearestNeighbords(3, points, WALLINGFORD_CENTER);
-            System.out.println(label2);
-            String label3 = kNearestNeighbords(3, points, AMBIGUOUS_CENTER);
-            System.out.println(label3);
+            for (MapPoint target : ALL_POINTS) {
+                String label = kNearestNeighbords(3, points, target);
+                System.out.println(label);
+            }
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
@@ -68,7 +63,7 @@ public class KNearestNeighborhoods {
             return 0;
         })
         .limit(k)
-        .map(dd -> dd.location.neighborhood())
+        .map(dd -> dd.location.neighborhood)
         .collect(Collectors.toList());
         System.out.println(votes);
 
