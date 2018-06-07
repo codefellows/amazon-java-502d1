@@ -17,7 +17,7 @@
 * Class 14 - Bit Manipulation and File Formats
 * Class 15 - OWASP Security Principals
 * Class 16 - K-nearest Neighbors
-* Class 17 - Data Structures: Three Hard Interview Questions
+* Class 17 - Data Structures: Practicing Interview Questions
 * Class 18 - Continuous Integration and Continuous Deployment
 * Class 19 - Realtime Databases
 * Class 20 - Layers of Abstraction of CPU Architecture: x86, JVM, and Kotlin
