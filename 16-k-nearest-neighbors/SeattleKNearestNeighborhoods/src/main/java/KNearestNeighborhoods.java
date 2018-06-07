@@ -12,16 +12,8 @@ import java.util.stream.Collectors;
 public class KNearestNeighborhoods {
     // https://www.google.com/maps/@47.6494201,-122.3322363,14z
     public static MapPoint[] UNCLASSIFIED_POINTS = {
-        new MapPoint("Fremont", 47.658178, -122.360320),
-        new MapPoint("Wallingford", 47.661966, -122.330176),
-        new MapPoint("Unknown", 47.657919,-122.342450),
-        new MapPoint("Ballard", 47.670209, -122.387887),
-        new MapPoint("Beacon Hill", 47.577061, -122.310106),
-        new MapPoint("White Center", 47.510911, -122.355677),
         new MapPoint("Code Fellows", 47.618306, -122.351721),
-        new MapPoint("Low Flying Hawk", 47.616552, -122.331853),
-        new MapPoint("South Beacon Hill", 47.533608, -122.288862),
-        new MapPoint("Montana", 47.762143, -113.095031)
+        new MapPoint("Interbay?", 47.651160, -122.379999)
     };
 
     public static void main(String[] args) {
