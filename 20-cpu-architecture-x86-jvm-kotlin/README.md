@@ -37,13 +37,14 @@ Now Let's consider the physical aspects of these.
 * 
 
 ## Logic Gates
-![logic gates](./assets/logic_gates.jpg)
+./assets/cpu_floorplan.jpg
+![logic gates](./assets/logic-gates.jpg)
 
 * [Half Adder Circuit](http://isweb.redwoods.edu/INSTRUCT/CalderwoodD/diglogic/half-add.htm)
 * [Full Adder Circuit](http://isweb.redwoods.edu/INSTRUCT/CalderwoodD/diglogic/full.htm)
 
-![half adder](./assets/half-adder.jpg)
-![full adder](./assets/full-adder.jpg)
+![half adder](./assets/half-adder.gif)
+![full adder](./assets/full-adder.gif)
 
 ## CPU Architecture
 * [CPU Architecture](https://www.tutorialspoint.com/computer_logical_organization/cpu_architecture.htm)
