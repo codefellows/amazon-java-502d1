@@ -12,23 +12,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class FirebaseMain {
-    public static void main(String[] args) {
-        char[] a1 = {'a', 'a', 'b'};
-        char[] a2 = {'a', 'a', 'b'};
-
-        String s1 = new String(a1);
-        String s2 = new String(a2);
-        System.out.println("s1 == s2? " + s1.equals(s2));
-
-        Set<char[]> set = new HashSet<>();
-        System.out.println("a1 in? " + set.contains(a1));
-        set.add(a1);
-        System.out.println("a1 in? " + set.contains(a1));
-
-        System.out.println("a2 in? " + set.contains(a2));
-        set.add(a2);
-        System.out.println("a2 in? " + set.contains(a2));
-
+    public static void main(String[] args) throws IOException {
+        firebaseStuff();
     }
 
     public static void firebaseStuff() throws  IOException {
@@ -40,10 +25,13 @@ public class FirebaseMain {
                 .setDatabaseUrl("https://storage-2cad2.firebaseio.com/")
                 .build();
 
+        System.out.println("Initializing app");
         FirebaseApp.initializeApp(options);
 
+        System.out.println("Database reference");
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("messages");
+        DatabaseReference myRef = database.getReference("data");
+        System.out.println("Setting value");
         myRef.setValue("hello", new DatabaseReference.CompletionListener() {
             @Override
             public void onComplete(DatabaseError error, DatabaseReference ref) {
