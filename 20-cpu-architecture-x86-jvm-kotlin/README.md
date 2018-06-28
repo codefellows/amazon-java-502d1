@@ -6,6 +6,7 @@
 * [y86 Instruction Set](http://web.cse.ohio-state.edu/~reeves.92/CSE2421sp13/PracticeProblemsY86.pdf)
 * [The Java Virtual Machine](https://www.geeksforgeeks.org/jvm-works-jvm-architecture/)
 * [Kotlin Programming Language](https://en.wikipedia.org/wiki/Kotlin_programming_language#Philosophy)
+* [Game: Circuit Scramble](https://play.google.com/store/apps/details?id=com.Suborbital.CircuitScramble&hl=en_US)
 
 ## CPU Architecture
 The CPU is the central processing unit of a computer. It's responsible for
@@ -44,6 +45,12 @@ Now Let's consider the physical aspects of these.
 
 ![half adder](./assets/half-adder.gif)
 ![full adder](./assets/full-adder.gif)
+
+Here's a fun phone game that presents you with circuits and logic gates. You
+have to reason about what inputs to activate in order to activate the final
+output.
+
+* [Game: Circuit Scramble](https://play.google.com/store/apps/details?id=com.Suborbital.CircuitScramble&hl=en_US)
 
 ## CPU Architecture
 * [CPU Architecture](https://www.tutorialspoint.com/computer_logical_organization/cpu_architecture.htm)
