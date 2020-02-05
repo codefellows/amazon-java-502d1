@@ -1,4 +1,4 @@
-# ![CF](http://i.imgur.com/7v5ASc8.png) Apprenti Training
+# Code 502: Java Skills
 
 ## Topics
 * Class 01 - Scanner File Processing
